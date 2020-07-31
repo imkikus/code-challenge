@@ -1,2 +1,13 @@
 @import "trix/dist/trix";
 @import "~bootstrap/scss/bootstrap.scss";
+
+.errors {
+  color: red;
+  top: 0;
+  ul {
+    padding-inline-start: 20px;
+    li {
+      font-size: 10px;
+    }
+  }
+}

@@ -30,7 +30,24 @@ class CompaniesController < ApplicationController
     else
       render :edit
     end
-  end  
+  end
+
+  def delete
+  end
+
+  def destroy
+    begin
+      @company.destroy
+      flash[:success] = "Company with name #{@company.name} deleted!"
+    rescue => e
+      if e.message.include?("NilClass")
+        flash[:error] = "Record not found"
+      else
+        flash[:error] = "#{e.message}"
+      end
+    end
+    redirect_to companies_path
+  end
 
   private
 
@@ -47,7 +64,7 @@ class CompaniesController < ApplicationController
   end
 
   def set_company
-    @company = Company.find(params[:id])
+    @company = Company.find(params[:id]) rescue nil
   end
   
 end
